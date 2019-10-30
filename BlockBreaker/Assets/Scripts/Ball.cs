@@ -7,6 +7,10 @@ public class Ball : MonoBehaviour
 
     [SerializeField] Paddle myPaddle;
 
+    //
+    [SerializeField] AudioClip[] ballSounds;
+
+
     Vector2 paddleToBallDistance;
 
     bool hasStarted = false;
@@ -24,6 +28,17 @@ public class Ball : MonoBehaviour
             LockBallToPaddle();
             LaunchBallOnClick();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        //generate random number
+        int randomNumber = Random.Range(0, ballSounds.Length);
+
+        //read clip from array position = randomNumber
+        AudioClip myClip = ballSounds[randomNumber];
+
+        GetComponent<AudioSource>().PlayOneShot(myClip);
     }
 
     private void LaunchBallOnClick()
