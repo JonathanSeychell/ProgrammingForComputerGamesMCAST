@@ -10,11 +10,17 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void LoadNextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
     public void Quit(string msg)
     {
-        if (msg == "quit")
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
+        //Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+ 
     }
 }
